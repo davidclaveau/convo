@@ -29,7 +29,7 @@ class ConversationsController < ApplicationController
   private
 
   def conversation_params
-    params.permit(:name, :username, :password)
+    params.permit(:owner, :conversation_title, :userlimit, :location_longitude, :location_latitude, :location_accuracy, :main_topic)
   end
 
   def conversation
