@@ -1,9 +1,9 @@
 class CreateUsers < ActiveRecord::Migration[6.1]
   def change
     create_table :users do |t|
-      t.string :name
-      t.string :username
-      t.string :password
+      t.string :name, null: false
+      t.string :username, null: false
+      t.string :password, null: false
       t.float :location_longitude
       t.float :location_latitude
       t.integer :location_accuracy
