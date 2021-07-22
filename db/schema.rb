@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_22_190706) do
+ActiveRecord::Schema.define(version: 2021_07_22_193043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer "owner", null: false
+    t.string "conversation_title", null: false
+    t.integer "user_limit", null: false
+    t.float "location_longitude"
+    t.float "location_latitude"
+    t.integer "location_accuracy"
+    t.string "main_topic", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
