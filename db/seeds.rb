@@ -7,22 +7,42 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create(
-  name: "David",
   username: "davidclaveau",
   password: "password"
 )
 
 User.create(
-  name: "Caitlin",
-  username: "caitlining",
+  username: "bohorvat",
+  password: "password"
+)
+
+User.create(
+  username: "eliaspettersson",
+  password: "password"
+)
+
+User.create(
+  username: "brockboeser",
+  password: "password"
+)
+
+User.create(
+  username: "quinnhughes",
   password: "password"
 )
 
 5.times do |i|
   Conversation.create(
-    owner: 1,
-    conversation_title: "Convo #{i + 1}",
+    user_id: 1,
+    title: "Convo #{i + 1}",
     user_limit: 10,
     main_topic: "This convo is about hockey number #{i}"
+  )
+end
+
+10.times do |i|
+  ConversationUser.create(
+    conversation_id: rand(1..5),
+    user_id: rand(2..5)
   )
 end

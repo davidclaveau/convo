@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'conversation_users/index'
+  get 'conversation_users/create'
+  get 'conversation_users/show'
+  get 'conversation_users/destroy'
   #Users
   get 'users/index'
   post 'users/create'
