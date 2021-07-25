@@ -1,4 +1,4 @@
-class ConversationsController < ApplicationController
+class Api::V1::ConversationsController < ApplicationController
   def index
     conversation = Conversation.all.order(created_at: :desc)
     render json: conversation
