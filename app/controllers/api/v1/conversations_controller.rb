@@ -28,8 +28,8 @@ module Api
       def update
         conversation = Conversation.find_by(id: params[:id])
         
-        if Conversation.update(conversation_params)
-          render json: ConversationSerializer.new(conversations).to_json
+        if conversation.update(conversation_params)
+          render json: ConversationSerializer.new(conversation).to_json
         else
           render json: { error: conversation.errors.messages }, status: 422
         end
@@ -48,7 +48,7 @@ module Api
       private
 
       def conversation_params
-        params.permit(:id, :title, :main_topic)
+        params.permit(:user_id, :title, :user_limit, :main_topic)
       end
     end
   end

@@ -29,7 +29,7 @@ module Api
         user = User.find_by(username: params[:username])
         
         if user.update(user_params)
-          render json: UserSerializer.new(users).to_json
+          render json: UserSerializer.new(user).to_json
         else
           render json: { error: user.errors.messages }, status: 422
         end

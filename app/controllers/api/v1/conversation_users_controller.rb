@@ -28,8 +28,8 @@ module Api
       def update
         conversation_user = ConversationUser.find_by(id: params[:id])
         
-        if Conversation_user.update(conversation_user_params)
-          render json: ConversationUserSerializer.new(conversation_users).to_json
+        if conversation_user.update(conversation_user_params)
+          render json: ConversationUserSerializer.new(conversation_user).to_json
         else
           render json: { error: conversation_user.errors.messages }, status: 422
         end
