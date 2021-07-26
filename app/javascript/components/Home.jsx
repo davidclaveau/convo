@@ -11,7 +11,7 @@ export default () => (
         </p>
         <hr className="my-4" />
         <Link
-          to="/conversations"
+          to="/api/v1/conversations"
           className="btn btn-lg custom-button"
           role="button"
         >
