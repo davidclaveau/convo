@@ -1,38 +1,55 @@
-class Api::V1::ConversationsController < ApplicationController
-  def index
-    conversation = Conversation.all.order(created_at: :desc)
-    render json: conversation
-  end
+module Api
+  module V1
+    class ConversationsController < ApplicationController
+      protect_from_forgery with: :null_session
+      def index
+        conversations = Conversation.all
 
-  def create
-    conversation = Conversation.create!(conversation_params)
-    if conversation
-      render json: conversation
-    else
-      render json: conversation.errors
+        render json: ConversationSerializer.new(conversations).to_json
+
+      end
+      
+      def show
+        conversation = Conversation.find_by(id: params[:id])
+        
+        render json: ConversationSerializer.new(conversation).to_json
+      end
+      
+      def create
+        conversation = Conversation.new(conversation_params)
+        
+        if conversation.save
+          render json: ConversationSerializer.new(conversation).to_json
+        else
+          render json: { error: conversation.errors.messages }, status: 422
+        end
+      end
+      
+      def update
+        conversation = Conversation.find_by(id: params[:id])
+        
+        if Conversation.update(conversation_params)
+          render json: ConversationSerializer.new(conversations).to_json
+        else
+          render json: { error: conversation.errors.messages }, status: 422
+        end
+      end
+      
+      def destroy
+        conversation = Conversation.find_by(id: params[:id])
+        
+        if conversation.destroy
+          head :no_content
+        else
+          render json: { error: conversation.errors.messages }, status: 422
+        end
+      end
+
+      private
+
+      def conversation_params
+        params.permit(:id, :title, :main_topic)
+      end
     end
-  end
-
-  def show
-    if conversation
-      render json: conversation
-    else
-      render json: conversation.errors
-    end
-  end
-
-  def destroy
-    conversation&.destroy
-    render json: { message: 'Conversation deleted!' }
-  end
-
-  private
-
-  def conversation_params
-    params.permit(:owner, :conversation_title, :userlimit, :location_longitude, :location_latitude, :location_accuracy, :main_topic)
-  end
-
-  def conversation
-    @conversation ||= Conversation.find(params[:id])
   end
 end
