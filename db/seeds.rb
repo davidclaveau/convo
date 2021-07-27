@@ -8,26 +8,31 @@
 
 User.create(
   username: "davidclaveau",
+  email: "email1@dev.com",
   password_digest: "password"
 )
 
 User.create(
   username: "bohorvat",
+  email: "email53@dev.com",
   password_digest: "password"
 )
 
 User.create(
   username: "eliaspettersson",
+  email: "email40@dev.com",
   password_digest: "password"
 )
 
 User.create(
   username: "brockboeser",
+  email: "email6@dev.com",
   password_digest: "password"
 )
 
 User.create(
   username: "quinnhughes",
+  email: "email43@dev.com",
   password_digest: "password"
 )
 
