@@ -1,14 +1,13 @@
 Rails.application.routes.draw do
 
-  get 'sessions/new'
-  get 'sessions/create'
-  get 'sessions/destroy'
   namespace :api do
     namespace :v1 do
       resources :users, param: :username
       resources :conversations, :conversation_users
     end
   end
+  
+  resources :sessions, only: [:new, :create, :destroy]
   
   root 'homepage#index'
   get '/*path' => 'homepage#index', via: :all

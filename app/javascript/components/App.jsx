@@ -11,14 +11,17 @@ import Users from '../components/Users';
 
 const App = () => {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/users/" component={Users} />
-        <Route exact path="/users/:username" component={User} />
-      </Switch>
-    </Router> 
+    <>
+      <h1>Home</h1>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/users/" component={Users} />
+          <Route exact path="/users/:username" component={User} />
+        </Switch>
+      </Router> 
+    </>
   );
 };
 
