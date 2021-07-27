@@ -8,27 +8,27 @@
 
 User.create(
   username: "davidclaveau",
-  password: "password"
+  password_digest: "password"
 )
 
 User.create(
   username: "bohorvat",
-  password: "password"
+  password_digest: "password"
 )
 
 User.create(
   username: "eliaspettersson",
-  password: "password"
+  password_digest: "password"
 )
 
 User.create(
   username: "brockboeser",
-  password: "password"
+  password_digest: "password"
 )
 
 User.create(
   username: "quinnhughes",
-  password: "password"
+  password_digest: "password"
 )
 
 5.times do |i|

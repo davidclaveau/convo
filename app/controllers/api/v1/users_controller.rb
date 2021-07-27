@@ -48,7 +48,7 @@ module Api
       private
 
       def user_params
-        params.permit(:username, :password, :location_longitude, :location_latitude, :location_accuracy)
+        params.permit(:username, :password_digest, :location_longitude, :location_latitude, :location_accuracy)
       end
 
     end
