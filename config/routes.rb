@@ -1,22 +1,13 @@
 Rails.application.routes.draw do
 
-  get 'conversation_users/index'
-  get 'conversation_users/create'
-  get 'conversation_users/show'
-  get 'conversation_users/destroy'
-  #Users
-  get 'users/index'
-  post 'users/create'
-  get '/show/:id', to: 'users#show'
-  delete '/destroy/:id', to: 'users#delete'
-
-  #Conversations
-  get 'conversations/index'
-  post 'conversations/create'
-  get '/show/:id', to: 'conversations#show'
-  delete '/destroy/:id', to: 'conversations#delete'
+  namespace :api do
+    namespace :v1 do
+      resources :users, param: :username
+      resources :conversations, :conversation_users
+    end
+  end
   
   root 'homepage#index'
-  get '/*path' => 'homepage#index'
+  get '/*path' => 'homepage#index', via: :all
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
