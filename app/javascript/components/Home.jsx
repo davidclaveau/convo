@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Registration from "./auth/Registration";
+import Login from "./auth/Login";
 
 const Home = (props) => {
   const handleSuccessfulAuth = (data) => {
@@ -19,6 +20,7 @@ const Home = (props) => {
           </p>
           <hr className="my-4" />
             <Registration handleSuccessfulAuth={(data) => {handleSuccessfulAuth(data)}} />
+            <Login />
         </div>
       </div>
     </div>

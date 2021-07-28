@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
                .try(:authenticate, params['user']['password'])
 
     if user
-      session[:user_id] = user.user_id
+      session[:user_id] = user.id
       render json: {
         status: :created,
         logged_in: true,
