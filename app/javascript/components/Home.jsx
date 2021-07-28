@@ -20,7 +20,7 @@ const Home = (props) => {
           </p>
           <hr className="my-4" />
             <Registration handleSuccessfulAuth={(data) => {handleSuccessfulAuth(data)}} />
-            <Login />
+            <Login handleSuccessfulAuth={(data) => {handleSuccessfulAuth(data)}} />
         </div>
       </div>
     </div>

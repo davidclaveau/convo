@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { 
   BrowserRouter as Router,
   Route,
@@ -10,12 +10,29 @@ import Login from "../components/Login";
 import Registration from "../components/auth/Registration";
 import User from '../components/User';
 import Users from '../components/Users';
+import axios from "axios";
 
 const App = () => {
   const [user, setUser] = useState({
     loggedInStatus: "NOT_LOGGED_IN",
     user: {}
   });
+
+  const checkLoginStatus = () => {
+    axios.get("http://localhost:3000/logged_in",
+      {withCredentials: true}
+    )
+    .then(response => {
+      console.log("logged_in?", response)
+    })
+    .catch(error => {
+      console.log("login error", error)
+    })
+  }
+
+  useEffect(() => {
+    checkLoginStatus();
+  }, [])
 
   const handleLogin = (data) => {
     setUser({

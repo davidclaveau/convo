@@ -18,11 +18,11 @@ const Login = (props) => {
     )
     .then(response => {
       console.log("response from login", response)
-      // if  (response.data.status === 'created') {
-      //   props.handleSuccessfulAuth(response.data)
-      // } else {
-      //   console.log("not logged in")
-      // }
+      if  (response.data.logged_in) {
+        props.handleSuccessfulAuth(response.data)
+      } else {
+        console.log("not logged in")
+      }
     })
     .catch(error => {
       console.log("error", error)
