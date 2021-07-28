@@ -23,7 +23,18 @@ const App = () => {
       {withCredentials: true}
     )
     .then(response => {
-      console.log("logged_in?", response)
+      // If user is logged in
+      if (response.data.logged_in && user.loggedInStatus === "NOT_LOGGED_IN") {
+        setUser({
+          loggedInStatus: "LOGGED_IN",
+          user: response.data.user
+        })
+      } else if (!response.data.logged_in && user.loggedInStatus === "LOGGED_IN") {
+        setUser({
+          loggedInStatus: "NOT_LOGGED_IN",
+          user: {}
+        })
+      }
     })
     .catch(error => {
       console.log("login error", error)
