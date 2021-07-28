@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { 
   BrowserRouter as Router,
   Route,
-  Switch
+  Switch,
+  Redirect
 } from 'react-router-dom';
 import Home from "../components/Home";
 import Login from "../components/Login";
@@ -11,16 +12,49 @@ import User from '../components/User';
 import Users from '../components/Users';
 
 const App = () => {
+  const [user, setUser] = useState({
+    loggedInStatus: "NOT_LOGGED_IN",
+    user: {}
+  });
+
+  const handleLogin = (data) => {
+    setUser({
+      loggedInStatus: "LOGGED_IN",
+      user: data.user
+    })
+  }
+
   return (
     <>
-      <h1>Home</h1>
       <Router>
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/registration" component={Registration} />
-          <Route exact path="/users/" component={Users} />
-          <Route exact path="/users/:username" component={User} />
+          <Route
+            exact
+            path="/"
+            render={props => (
+              <Home {...props} handleLogin={(data) => handleLogin(data)} loggedInStatus={user.loggedInStatus} />
+            )}
+          />
+          <Route
+            exact
+            path="/login"
+            component={Login}
+          />
+          <Route
+            exact
+            path="/registration"
+            component={Registration}
+          />
+          <Route
+            exact
+            path="/users/"
+            component={Users}
+          />
+          <Route
+            exact
+            path="/users/:username"
+            component={User}
+          />
         </Switch>
       </Router> 
     </>

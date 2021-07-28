@@ -1,17 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const Registration = () => {
+const Registration = (props) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password_confirmation, setPassword_confirmation] = useState("");
 
   function register() {
-    console.log("username", username)
-    console.log("email", email)
-    console.log("password", password)
-
     axios.post("http://localhost:3000/registrations", {
       user: {
         username: username,
@@ -23,7 +19,12 @@ const Registration = () => {
     { withCredentials: true}
     )
     .then(response => {
-      console.log("registration res", response);
+      console.log("response.data.status", response.data.status)
+      if  (response.data.status === 'created') {
+        props.handleSuccessfulAuth(response.data)
+      } else {
+        console.log("not logged in")
+      }
     })
     .catch(error => {
       console.log("error", error)
