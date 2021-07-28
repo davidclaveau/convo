@@ -2,12 +2,24 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Registration from "./auth/Registration";
 import Login from "./auth/Login";
+import axios from "axios";
 
 const Home = (props) => {
   const handleSuccessfulAuth = (data) => {
     props.handleLogin(data);
-    props.history.push("/users")
-  }
+    props.history.push("/users");
+  };
+
+  const handleLogoutClick = () => {
+    axios.delete("http://localhost:3000/logout",
+      { withCredentials: true })
+    .then(response => {
+      props.handleLogout();
+    })
+    .catch(error => {
+      console.log("logout error", error)
+    })
+  };
 
   return (
     <div className="vw-100 vh-100 primary-color d-flex align-items-center justify-content-center">
@@ -19,8 +31,9 @@ const Home = (props) => {
             Find your conversation
           </p>
           <hr className="my-4" />
-            <Registration handleSuccessfulAuth={(data) => {handleSuccessfulAuth(data)}} />
-            <Login handleSuccessfulAuth={(data) => {handleSuccessfulAuth(data)}} />
+            <button onClick={() => handleLogoutClick()}>Logout</button>
+            <Registration handleSuccessfulAuth={(data) => handleSuccessfulAuth(data)} />
+            <Login handleSuccessfulAuth={(data) => handleSuccessfulAuth(data)} />
         </div>
       </div>
     </div>

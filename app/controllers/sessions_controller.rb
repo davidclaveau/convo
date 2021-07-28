@@ -34,11 +34,4 @@ class SessionsController < ApplicationController
     reset_session
     render json: { status: 200, logged_out: true}
   end
-
-  private
-
-    def user_params
-      params.permit(:username, :email, :password)
-    end
-
 end

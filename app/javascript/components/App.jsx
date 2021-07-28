@@ -6,7 +6,7 @@ import {
   Redirect
 } from 'react-router-dom';
 import Home from "../components/Home";
-import Login from "../components/Login";
+import Login from "../components/auth/Login";
 import Registration from "../components/auth/Registration";
 import User from '../components/User';
 import Users from '../components/Users';
@@ -52,6 +52,15 @@ const App = () => {
     })
   }
 
+  const handleLogout = (data) => {
+    setUser({
+      loggedInStatus: "NOT_LOGGED_IN",
+      user: {}
+    })
+  }
+
+
+
   return (
     <>
       <Router>
@@ -60,7 +69,11 @@ const App = () => {
             exact
             path="/"
             render={props => (
-              <Home {...props} handleLogin={(data) => handleLogin(data)} loggedInStatus={user.loggedInStatus} />
+              <Home 
+                {...props}
+                handleLogin={(data) => handleLogin(data)}
+                handleLogout={(data) => handleLogout(data)}
+                loggedInStatus={user.loggedInStatus} />
             )}
           />
           <Route
