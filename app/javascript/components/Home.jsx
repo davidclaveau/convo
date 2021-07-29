@@ -1,13 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Registration from "./auth/Registration";
-import Login from "./auth/Login";
+import React, { useContext } from "react";
+import Registration from "./Registration";
+import Login from "./Login";
 import axios from "axios";
+import { UserContext } from "../contexts/UserContext";
 
 const Home = (props) => {
+  const {user, setUser} = useContext(UserContext);
+
   const handleSuccessfulAuth = (data) => {
     props.handleLogin(data);
-    props.history.push("/users");
   };
 
   const handleLogoutClick = () => {
@@ -26,7 +27,7 @@ const Home = (props) => {
       <div className="jumbotron jumbotron-fluid bg-transparent">
         <div className="container secondary-color">
           <h1 className="display-4">Convo</h1>
-          <h1>Status {props.loggedInStatus}</h1>
+          <h1>Status {user.user.username}</h1>
           <p className="lead">
             Find your conversation
           </p>
