@@ -1,3 +1,5 @@
+# bundle exec rake db_tasks:rebuild   
+
 namespace :db_tasks do
   desc "Rebuild database"
   task :rebuild, [] => :environment do
