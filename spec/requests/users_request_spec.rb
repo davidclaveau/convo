@@ -44,7 +44,7 @@ RSpec.describe "Users Controller", type: :request do
   end
 
   describe "GET api/v1/users#update" do
-    it "returns status 204 (no content), no user found in body" do
+    it "returns status 204, no user found in body" do
       delete "http://localhost:3000/api/v1/users/markusnaslund"
 
       expect(response.status).to eq(204)
