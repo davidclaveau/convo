@@ -9,6 +9,8 @@
     "axios": "^0.21.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "bootstrap": "^5.0.2",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
     "jquery": "^3.6.0",
     "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",
@@ -32,8 +34,15 @@
     "test-watch": "jest --watch"
   },
   "jest": {
+    "setupFilesAfterEnv": [
+      "./test/jestsetup.js"
+    ],
     "roots": [
       "test/javascript"
-    ]
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/javascript/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/test/javascript/__mocks__/styleMock.js"
+    }
   }
 }
