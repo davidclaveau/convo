@@ -4,9 +4,9 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-import Dashboard from "./Pages/Dashboard";
-import Login from "./Pages/Login";
-import Registration from "./Registration";
+import Dashboard from "./components/Dashboard";
+import Login from "./components/Login";
+import Registration from "./components/Registration";
 import User from './User';
 import Users from './Users';
 import axios from "axios";

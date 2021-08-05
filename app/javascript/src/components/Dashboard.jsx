@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import Registration from "../Registration";
+import Registration from "./Registration";
 import Login from "./Login";
 import axios from "axios";
 import { UserContext } from "../contexts/user-context";

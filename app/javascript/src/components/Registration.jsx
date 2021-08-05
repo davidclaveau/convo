@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
+import { UserContext } from "../contexts/user-context";
 
 const Registration = (props) => {
+  const {user, setUser} = useContext(UserContext);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,7 +23,10 @@ const Registration = (props) => {
     .then(response => {
       console.log("response.data.status", response.data.status)
       if  (response.data.status === 'created') {
-        props.handleSuccessfulAuth(response.data)
+        setUser({
+          loggedInStatus: "LOGGED_IN",
+          user: response.data.user
+        })
       } else {
         console.log("not logged in")
       }
