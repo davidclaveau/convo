@@ -34,24 +34,29 @@ const Registration = (props) => {
   return (
     <>
       <div>This is the Registration view for our app.</div>
-      <form onSubmit={event => event.preventDefault()}>
+      <form
+        className="user-registration" 
+        onSubmit={event => event.preventDefault()}>
         <input 
+          className="user-registration__username"
           type="username"
           name="username"
           placeholder="Username"
           value={username}
           onChange={event => {setUsername(event.target.value);}}
           required 
-        />
+          />
         <input 
+          className="user-registration__email"
           type="email"
           name="email"
           placeholder="email@email.com"
           value={email}
           onChange={event => {setEmail(event.target.value);}}
           required 
-        />
+          />
         <input 
+          className="user-registration__password"
           type="password"
           name="password"
           placeholder="Password"
@@ -59,7 +64,8 @@ const Registration = (props) => {
           onChange={event => {setPassword(event.target.value);}}
           required 
         />
-        <input 
+        <input
+          className="user-registration__password-confirmation"
           type="password"
           name="password_confirmation"
           placeholder="Password"
@@ -67,7 +73,12 @@ const Registration = (props) => {
           onChange={event => {setPassword_confirmation(event.target.value);}}
           required 
         />
-        <button type="submit" onClick={() => register()}>Register</button>
+        <button
+          className="user-registration__button"
+          type="submit"
+          onClick={() => register()}>
+            Register
+        </button>
       </form>
     </>
   );

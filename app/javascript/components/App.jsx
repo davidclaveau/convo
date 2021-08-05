@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { 
-  StaticRouter as Router,
+  BrowserRouter as Router,
   Route,
   Switch,
 } from 'react-router-dom';
@@ -30,6 +30,7 @@ const App = () => {
             loggedInStatus: "LOGGED_IN",
             user: response.data.user
           })
+          console.log("howdy", response.data.user)
         } else if (!response.data.logged_in && user.loggedInStatus === "LOGGED_IN") {
           setUser({
             loggedInStatus: "NOT_LOGGED_IN",
@@ -42,12 +43,13 @@ const App = () => {
       })
     }
   }, [])
-
+  
   const handleLogin = (data) => {
     setUser({
       loggedInStatus: "LOGGED_IN",
       user: data.user
     })
+    console.log("howdy", data)
   }
 
   const handleLogout = (data) => {

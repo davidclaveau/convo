@@ -42,6 +42,7 @@ const Login = (props) => {
           required 
         /> */}
         <input 
+          data-testid="login-email"
           type="email"
           name="email"
           placeholder="email@email.com"
@@ -50,14 +51,20 @@ const Login = (props) => {
           required 
         />
         <input 
+          data-testid="login-password"
           type="password"
           name="password"
           placeholder="Password"
           value={password}
           onChange={event => {setPassword(event.target.value);}}
           required 
-        />
-        <button type="submit" onClick={() => register()}>Login</button>
+          />
+        <button
+          data-testid="login-button"
+          type="submit"
+          onClick={() => register()}>
+            Login
+        </button>
       </form>
     </>
   );
