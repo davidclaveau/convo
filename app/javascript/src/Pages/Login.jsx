@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
+import { UserContext } from "../contexts/user-context";
 
 const Login = (props) => {
-  // const [username, setUsername] = useState("");
+  const {user, setUser} = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function register() {
+  function handleLogin() {
     axios.post("http://localhost:3000/sessions", {
       user: {
-        // username: username,
         email: email,
         password: password,
       }
@@ -19,7 +19,10 @@ const Login = (props) => {
     .then(response => {
       console.log("response from login", response)
       if  (response.data.logged_in) {
-        props.handleSuccessfulAuth(response.data)
+        setUser({
+          loggedInStatus: "LOGGED_IN",
+          user: response.data.user
+        })
       } else {
         console.log("not logged in")
       }
@@ -29,18 +32,25 @@ const Login = (props) => {
     });
   };
 
+  const handleLogoutClick = () => {
+    axios.delete("http://localhost:3000/logout",
+      { withCredentials: true })
+    .then(response => {
+      setUser({
+        loggedInStatus: "NOT_LOGGED_IN",
+        user: {}
+      })
+    })
+    .catch(error => {
+      console.log("logout error", error)
+    })
+  };
+
   return (
     <>
+      <h1>User: { user.user.username }</h1>
       <div>This is the Login view for our app.</div>
       <form onSubmit={event => event.preventDefault()}>
-        {/* <input 
-          type="username"
-          name="username"
-          placeholder="Username"
-          value={username}
-          onChange={event => {setUsername(event.target.value);}}
-          required 
-        /> */}
         <input 
           data-testid="login-email"
           type="email"
@@ -62,10 +72,11 @@ const Login = (props) => {
         <button
           data-testid="login-button"
           type="submit"
-          onClick={() => register()}>
+          onClick={() => handleLogin()}>
             Login
         </button>
       </form>
+      <button onClick={() => handleLogoutClick()}>Logout</button>
     </>
   );
 };
