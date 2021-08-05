@@ -1,8 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 import axios from "axios";
 import { UserContext } from "../contexts/user-context";
 
-const Login = (props) => {
+const Login = () => {
   const {user, setUser} = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -48,7 +48,7 @@ const Login = (props) => {
 
   return (
     <>
-      <h1>User: { user.user.username }</h1>
+      <h1>User: { user ? user.user.username : "" }</h1>
       <div>This is the Login view for our app.</div>
       <form onSubmit={event => event.preventDefault()}>
         <input 

@@ -45,6 +45,7 @@ const Registration = () => {
         onSubmit={event => event.preventDefault()}>
         <input 
           className="user-registration__username"
+          data-testid="registration-username"
           type="username"
           name="username"
           placeholder="Username"
@@ -54,6 +55,7 @@ const Registration = () => {
           />
         <input 
           className="user-registration__email"
+          data-testid="registration-email"
           type="email"
           name="email"
           placeholder="email@email.com"
@@ -63,15 +65,17 @@ const Registration = () => {
           />
         <input 
           className="user-registration__password"
+          data-testid="registration-password"
           type="password"
           name="password"
           placeholder="Password"
           value={password}
           onChange={event => {setPassword(event.target.value);}}
           required 
-        />
+          />
         <input
           className="user-registration__password-confirmation"
+          data-testid="registration-password-confirmation"
           type="password"
           name="password_confirmation"
           placeholder="Password"
