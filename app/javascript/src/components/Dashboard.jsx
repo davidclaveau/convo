@@ -1,10 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import Registration from "./Registration";
 import Login from "./Login";
-import axios from "axios";
-import { UserContext } from "../contexts/user-context";
 
-const Dashboard = (props) => {
+const Dashboard = () => {
   return (
     <div className="vw-100 vh-100 primary-color d-flex align-items-center justify-content-center">
       <div className="jumbotron jumbotron-fluid bg-transparent">
@@ -14,13 +12,12 @@ const Dashboard = (props) => {
             Find your conversation
           </p>
           <hr className="my-4" />
-            <Registration handleSuccessfulAuth={(data) => handleSuccessfulAuth(data)} />
-            <Login handleSuccessfulAuth={(data) => handleSuccessfulAuth(data)} />
+            <Registration />
+            <Login />
         </div>
       </div>
     </div>
   );
 }
 
-export default Dashboard
-;
+export default Dashboard;

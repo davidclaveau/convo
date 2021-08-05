@@ -2,14 +2,16 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { UserContext } from "../contexts/user-context";
 
-const Registration = (props) => {
-  const {user, setUser} = useContext(UserContext);
+const Registration = () => {
+  const {setUser} = useContext(UserContext);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password_confirmation, setPassword_confirmation] = useState("");
 
   function register() {
+    // Register the user with the form details
+    // Log the user into the session on registration
     axios.post("http://localhost:3000/registrations", {
       user: {
         username: username,
@@ -21,7 +23,6 @@ const Registration = (props) => {
     { withCredentials: true}
     )
     .then(response => {
-      console.log("response.data.status", response.data.status)
       if  (response.data.status === 'created') {
         setUser({
           loggedInStatus: "LOGGED_IN",

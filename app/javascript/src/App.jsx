@@ -12,7 +12,6 @@ import Users from './Users';
 import axios from "axios";
 import { UserContext } from './contexts/user-context'
 
-
 const App = () => {
   const [user, setUser] = useState({
     loggedInStatus: "NOT_LOGGED_IN",
@@ -20,6 +19,7 @@ const App = () => {
   });
 
   useEffect(() => {
+    // Check if the user is already logged in through sessions
     axios.get("http://localhost:3000/logged_in",
       { withCredentials: true }
     )
@@ -41,6 +41,7 @@ const App = () => {
       console.log("login error", error)
     })
   }, [])
+
 
   return (
     <>
