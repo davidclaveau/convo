@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :users, param: :username
-      resources :conversations, :conversation_users
+      resources :conversations
+      resources :conversation_users
     end
   end
   
