@@ -4,8 +4,8 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-import Home from "./Home";
-import Login from "./Login";
+import Dashboard from "./Pages/Dashboard";
+import Login from "./Pages/Login";
 import Registration from "./Registration";
 import User from './User';
 import Users from './Users';
@@ -68,7 +68,7 @@ const App = () => {
               exact
               path="/"
               render={props => (
-                <Home 
+                <Dashboard 
                   {...props}
                   handleLogin={(data) => handleLogin(data)}
                   handleLogout={(data) => handleLogout(data)}

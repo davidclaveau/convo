@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
-import Registration from "./Registration";
+import Registration from "../Registration";
 import Login from "./Login";
 import axios from "axios";
-import { UserContext } from "../contexts/UserContext";
+import { UserContext } from "../../contexts/UserContext";
 
-const Home = (props) => {
+const Dashboard
+ = (props) => {
   const {user, setUser} = useContext(UserContext);
 
   const handleSuccessfulAuth = (data) => {
@@ -41,4 +42,5 @@ const Home = (props) => {
   );
 }
 
-export default Home;
+export default Dashboard
+;
