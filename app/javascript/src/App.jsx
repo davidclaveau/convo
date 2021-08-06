@@ -4,13 +4,16 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
+import { UserContext } from './contexts/user-context'
+import axios from "axios";
+
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import Registration from "./components/Registration";
+import Navigation from "./components/Navigation"
+import Conversations from "./components/Conversations"
 import User from './User';
 import Users from './Users';
-import axios from "axios";
-import { UserContext } from './contexts/user-context'
 
 const App = () => {
   const [user, setUser] = useState({
@@ -47,6 +50,7 @@ const App = () => {
     <>
       <UserContext.Provider value={{user, setUser}}>
         <Router>
+          <Navigation />
           <Switch>
             <Route
               exact
@@ -78,6 +82,11 @@ const App = () => {
               exact
               path="/users/:username"
               component={User}
+            />
+            <Route
+              exact
+              path="/conversations"
+              component={Conversations}
             />
           </Switch>
         </Router> 
